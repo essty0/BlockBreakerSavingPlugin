@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNextScene(int level = 0)
     {
-        
+        // FindObjectOfType<GameStatus>().ResetTimer();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if((level + 1) <= SceneManager.sceneCountInBuildSettings) SceneManager.LoadScene(level + 1);
         else SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings);
@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadStartScene()
     {
+        FindObjectOfType<GameStatus>().ResetTimer();
         SceneManager.LoadScene(0);
         
     }
@@ -25,6 +26,10 @@ public class SceneLoader : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void LoadLastScene(){
+        SceneManager.LoadScene(3);
     }
 
   

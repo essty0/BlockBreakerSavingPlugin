@@ -40,8 +40,10 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Debug.Log("MOUSE");
             myRigidBody2D.velocity = new Vector2(xPush, yPush);
             hasStared = true;
+            FindObjectOfType<GameStatus>().unlockTimer();
         }       
     }
 
@@ -59,5 +61,9 @@ public class Ball : MonoBehaviour
             myAudioSource.PlayOneShot(clip);
             myRigidBody2D.velocity += velocityTweak;
         }
+    }
+
+    public void IncreaseSpeed(float newX, float newY){
+        myRigidBody2D.velocity = new Vector2(newX, newY);
     }
 }

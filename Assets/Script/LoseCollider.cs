@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LoseCollider : MonoBehaviour
 {
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("GameOver");
+        
+        if(collision.tag != "Bonus1" && collision.tag != "Bonus2") {
+            // SceneManager.LoadScene("GameOver");
+            FindObjectOfType<GameStatus>().StopTimer();
+            FindObjectOfType<SceneLoader>().LoadLastScene();
+        }
+        
     }
 }

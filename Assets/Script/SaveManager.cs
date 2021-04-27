@@ -30,17 +30,16 @@ public class SaveManager : MonoBehaviour
         public int level = 0;
         public int score = 0;
 
+        public int timer = 60;
+
     }
     List<savedData> userData;
-     
-    
 
+    /** Show winners */
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void showWinners(){
+        Debug.Log("Show winners button");
+    } 
 
     /********** New game button **********/
     private void showInput(){
@@ -60,7 +59,7 @@ public class SaveManager : MonoBehaviour
             } else {
                 /** we are going to save username */ 
                 userData = new List<savedData>();
-                userData.Add(new savedData {username = nameFromUser, level = 0, score = 0}); // Data set for new user
+                userData.Add(new savedData {username = nameFromUser, level = 0, score = 0, timer = 60}); // Data set for new user
                 myFile.AddSerialized("user", userData);
                 myFile.Save();
 
@@ -90,6 +89,7 @@ public class SaveManager : MonoBehaviour
         myFile.suppressWarning = false;
         if(myFile.Load()){
             level = myFile.GetInt("level");
+            
             FindObjectOfType<SceneLoader>().LoadNextScene(level); // Load level from saving
 
         }else {
@@ -99,14 +99,16 @@ public class SaveManager : MonoBehaviour
     }
 
     /** Save level before going to next */
-    public bool SaveLevel(int level, int score){
+    public bool SaveLevel(int level, int score, int timer){
         savedName = currentUserName();
         if(savedName != null ){
             myFile = new EasyFileSave(savedName);
             if(myFile.Load()){
-                Debug.Log("Level: " + level + " score: " + score + " Name:" + savedName);
+                Debug.Log("Level: " + level + " score: " + score + " Name:" + savedName + " Time: " + timer);
+                myFile.Add("username", savedName);
                 myFile.Add("level", level);
                 myFile.Add("score", score);
+                myFile.Add("timer", timer);
                 if(myFile.Save()) {myFile.Dispose(); return true;}
                 else return false;
             } 
@@ -117,7 +119,7 @@ public class SaveManager : MonoBehaviour
 
 
     /** Return current user name from currentUser.dat  */
-    private string currentUserName(){
+    public string currentUserName(){
         currentFile = new EasyFileSave("currentUserFile");
         if(currentFile.Load()){
             testName = currentFile.GetString("currentUser");
@@ -126,9 +128,7 @@ public class SaveManager : MonoBehaviour
       
     }
 
-    public void LoadSavedUserData(){
-        
-    }
+ 
 
     /********** Getter for Score **********/
     public int GetCurrentScore(){

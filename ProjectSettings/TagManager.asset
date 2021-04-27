@@ -7,6 +7,9 @@ TagManager:
   - Breakable
   - Unbreakable
   - ErrorText
+  - Bonus1
+  - Bonus2
+  - paddle
   layers:
   - Default
   - TransparentFX

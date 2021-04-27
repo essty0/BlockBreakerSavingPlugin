@@ -16,10 +16,13 @@ public class Block : MonoBehaviour
     [SerializeField] int timesHit; 
     
     private void OnCollisionEnter2D(Collision2D other) {
-       if(tag == "Breakable")
+        
+       if(tag == "Breakable" && other.gameObject.tag != "Bonus1" && other.gameObject.tag != "Bonus2")
         {
+            // FindObjectOfType<Bonus>().Drop();
             HandleHit();
         }
+     
 
 
     }
@@ -52,15 +55,13 @@ public class Block : MonoBehaviour
     private void Start()
     {
         CountBreakableBlocks();
-
-       
+ 
     }
      private void CountBreakableBlocks()
         {
             level = FindObjectOfType<Level>();
             if (tag == "Breakable")
-            {
-                
+            {    
                 level.countBlocks();
             }
         }
@@ -70,4 +71,5 @@ public class Block : MonoBehaviour
         GameObject sparkles = Instantiate(blockSparkleVFX, transform.position, transform.rotation);
         Destroy(sparkles, 1f);
     }
+
 }

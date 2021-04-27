@@ -22,13 +22,9 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // float mousePosInUnits = Input.mousePosition.x / Screen.width * screenWidthInUnits;
-        //mousePosInUnits = Mathf.Clamp(mousePosInUnits, minX, maxX); //upravim x-ovu hodnotu na moje limity
 
-        // Vector2 paddlePos = new Vector2(mousePosInUnits, transform.position.y);
         Vector2 paddlePos = new Vector2(transform.position.x, transform.position.y);
         paddlePos.x = Mathf.Clamp(GetXPos(), minX, maxX);
-
         transform.position = paddlePos; //az toto vyvola zmenu pozicie
     }
 
@@ -40,4 +36,19 @@ public class Paddle : MonoBehaviour
             return Input.mousePosition.x / Screen.width * screenWidthInUnits;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.transform.tag == "Bonus1"){
+            Debug.Log("TIME BONUS");
+            FindObjectOfType<GameStatus>().addBonusTime();
+            Destroy(other.gameObject);
+        }
+        if(other.transform.tag == "Bonus2"){
+            Debug.Log("SPEED BONUS");
+            FindObjectOfType<Ball>().IncreaseSpeed(20.0f, 30.0f);
+            Destroy(other.gameObject);
+        }
+    }
+
+
 }

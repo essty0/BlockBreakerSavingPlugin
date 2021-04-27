@@ -1087,7 +1087,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 490506130485239310, guid: f184d7aa70b83484cae1e3bb16cb367f, type: 3}
       propertyPath: gameSpeed
-      value: 8.94
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 490506130485239310, guid: f184d7aa70b83484cae1e3bb16cb367f, type: 3}
       propertyPath: isAutoPlayEnabled

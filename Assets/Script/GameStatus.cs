@@ -38,13 +38,14 @@ public class GameStatus : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         Time.timeScale = gameSpeed;
+        /** We check if timer > 0 */ 
         if(timer > 0)
             startTimer();
-        else  {
+        else  { // Game over
             StopTimer();
             FindObjectOfType<SceneLoader>().LoadLastScene();
         }

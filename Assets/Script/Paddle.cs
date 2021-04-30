@@ -15,7 +15,7 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // theGameSession = FindObjectOfType<GameSession>();
+        
         theBall = FindObjectOfType<Ball>();
     }
 
@@ -37,6 +37,7 @@ public class Paddle : MonoBehaviour
         }
     }
 
+    /** Hit bonus with paddle */ 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.transform.tag == "Bonus1"){
             Debug.Log("TIME BONUS");

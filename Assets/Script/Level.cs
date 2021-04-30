@@ -29,7 +29,7 @@ public class Level : MonoBehaviour
         if(breakableBlocks <= 0){
             score = FindObjectOfType<GameStatus>().ReturnScore();
             int timer =  FindObjectOfType<GameStatus>().ReturnTimer();
-            bool isSaved = FindObjectOfType<SaveManager>().SaveLevel(SceneManager.GetActiveScene().buildIndex, score, timer );
+            bool isSaved = FindObjectOfType<SaveManager>().SaveLevel(SceneManager.GetActiveScene().buildIndex, score, timer ); // Save level only then pass it
             if(isSaved)  mySceneLoader.LoadNextScene(SceneManager.GetActiveScene().buildIndex);
             else SceneManager.LoadScene(0);
             

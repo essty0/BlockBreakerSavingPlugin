@@ -17,14 +17,19 @@ public class Bonus : MonoBehaviour
 
     /** Randomly generate Speed or Time bonus */ 
     public void Drop(){
-        float rand = Random.Range(0,10);
-        if(rand >= 5)  _spawnBonus = timeBonus;
-        else _spawnBonus = speedBonus;
+        float rand = Random.Range(0,100);
+        if(rand >= 60 && rand <= 70)  _spawnBonus = timeBonus;
+        else if(rand >=30 && rand <= 40) _spawnBonus = speedBonus;
         Debug.Log("RAND " + rand);
-        Quaternion spawnRotation = Quaternion.Euler(0,0,0);
-        Instantiate(_spawnBonus, dropPoint.position, spawnRotation);
+        if(_spawnBonus != null ){
+            Quaternion spawnRotation = Quaternion.Euler(0,0,0);
+            Instantiate(_spawnBonus, dropPoint.position, spawnRotation);
+            _spawnBonus = null;
+        }
+        
     }
 
+    /** Ball hit block */ 
     private void OnCollisionEnter2D(Collision2D other) {
 
         if(other.gameObject.name == "Ball") Drop();

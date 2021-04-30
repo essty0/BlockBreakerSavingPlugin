@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenWidthInUnits: 16
-  minX: 1.25
-  maxX: 14.74
+  minX: 1.12
+  maxX: 14.89
 --- !u!82 &135536110
 AudioSource:
   m_ObjectHideFlags: 0
